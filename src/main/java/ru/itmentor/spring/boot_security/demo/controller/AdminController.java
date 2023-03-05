@@ -28,19 +28,19 @@ public class AdminController {
         this.service = service;
     }
 
-    @RequestMapping("/admin")
+    @GetMapping("/admin")
     public String index(Model model) {
         model.addAttribute("list", service.getUsers());
         return "admin/table";
     }
 
-    @GetMapping("admin/delete/{id}")
+    @RequestMapping("admin/delete/{id}")
     public String delete(@PathVariable("id") int id) {
         service.deleteUser(id);
         return "redirect:/admin";
     }
 
-    @GetMapping("admin/new")
+    @RequestMapping("admin/new")
     public String newUser(Model model) {
         model.addAttribute("user", new User());
         List<Role> roles = service.getRoles();
@@ -81,14 +81,4 @@ public class AdminController {
         mav.addObject("allRoles", roles);
         return mav;
     }
-
-    @RequestMapping(value="/logout", method = RequestMethod.GET)
-    public String logoutPage (HttpServletRequest request, HttpServletResponse response) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (auth != null){
-            new SecurityContextLogoutHandler().logout(request, response, auth);
-        }
-        return "redirect:/login?logout";
-    }
-
 }

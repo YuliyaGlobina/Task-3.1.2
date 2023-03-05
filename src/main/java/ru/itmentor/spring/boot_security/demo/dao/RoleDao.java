@@ -5,5 +5,4 @@ import ru.itmentor.spring.boot_security.demo.model.Role;
 
 
 public interface RoleDao extends JpaRepository<Role, Integer> {
-
 }

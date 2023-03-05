@@ -20,7 +20,7 @@ public class UserServiceImpl implements UserService {
     private final RoleDao roleDao;
 
     @Autowired
-    public UserServiceImpl(UserDao userDao, RoleDao roleDao) {
+    public UserServiceImpl(UserDao userDao, RoleDao roleDao, UserService service) {
         this.userDao = userDao;
         this.roleDao = roleDao;
     }
@@ -69,4 +69,5 @@ public class UserServiceImpl implements UserService {
         }
         return user.get();
     }
+
 }
